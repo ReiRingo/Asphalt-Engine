@@ -58,5 +58,19 @@ Asphalt uses a 5-phase loop every frame:
 
 ### raylib 5.0+
 
+### g++ (MinGW-w64) compiler.
+
+> *Note: It must support C++17 or higher (GCC 7+).*
+
+Operating System: Windows (currently supported via the included .bat scripts).
+
+# 🛠️ How to build
+
+1. **Install MinGW-w64**: Ensure you have `g++` installed. You can check by typing `g++ --version` in your terminal.
+2. **Clone the Repo**:
+   ```bash
+   git clone [https://github.com/ReiRingo/AsphaltEngine.git](https://github.com/ReiRingo/Asphalt-Engine.git)
+   ```
+
 # 📜 License
 This project is licensed under the MIT License - see the LICENSE file for details.
