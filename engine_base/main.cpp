@@ -5,20 +5,21 @@
 #include <string>
 
 #include "actor.h"  // Actors
-#include "player.h" // Player actor test
 
 // *** -- Main Function - Entry Point
 int main() {
     // Directory Init
     ChangeDirectory(GetApplicationDirectory());
 
-    // Config
+    // Settings
     std::string WindowName = "Asphalt Engine";   // Change to whatever you want your window to be named
-    int FPS = 30;                                // Old school RPG
-    Color DefaultWindowColour = BLACK;           // The 'background'
+    int FPS = 30;                                // Game FPS
+    Color DefaultWindowColour = BLACK;           // The 'background' colour
+    int WindowWidth = 640;
+    int WindowHeight = 480;
 
     // Initialisation
-    InitWindow(640, 480, WindowName.c_str());
+    InitWindow(WindowWidth, WindowHeight, WindowName.c_str());
     SetTargetFPS(FPS);
 
     // -- Game Loop
@@ -27,8 +28,8 @@ int main() {
     std::vector<Actor*> actorsToAdd;
 
     // Actor Init
-    actorsToAdd.push_back(new Player());    // Add player to the game
-    // actorsToAdd.push_back(new Freakbob());  // Add freakbob to the game
+    // Example:
+    // actorsToAdd.push_back(new Player());    // Add player to the game
 
     // Main Game Loop
     while(!WindowShouldClose()) {
@@ -100,13 +101,12 @@ performAs<Freakbob>(actors, [](Freakbob* fb) {
 })
 */
 
-/*
 bool isColliding(Actor* act1, Actor* act2) {
-    if (act1 == act2) return false; // Why would you even...
+    if (act1 == act2) return false; 
 
-    // TODO: Collision check soon!
+    // We use the pos + mask offset to get the world-space collision box
+    Rectangle rect1 = { act1->pos.x + act1->mask.x, act1->pos.y + act1->mask.y, act1->mask.width, act1->mask.height };
+    Rectangle rect2 = { act2->pos.x + act2->mask.x, act2->pos.y + act2->mask.y, act2->mask.width, act2->mask.height };
+
+    return CheckCollisionRecs(rect1, rect2);
 }
-*/
-
-// 000101010111001010101 10 010 0010100 11001 01100101 01010100 100 0101
-// ^^ Gibberish. (This means nothing, I'm just keeping my sanity.)
