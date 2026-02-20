@@ -1,0 +1,19 @@
+# Compiled Binaries
+*.exe
+*.o
+*.obj
+
+# Build Directories (You never know)
+bin/
+build/
+out/
+
+# IDE specific (VS Code / VS)
+.vscode/
+.vs/
+*.sln
+*.vcxproj
+
+# OS generated files
+.DS_Store
+Thumbs.db
