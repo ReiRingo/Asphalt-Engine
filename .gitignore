@@ -8,6 +8,10 @@ bin/
 build/
 out/
 
+# Test Directories
+Undertale Engine/
+engine_base_old/
+
 # IDE specific (VS Code / VS)
 .vscode/
 .vs/
