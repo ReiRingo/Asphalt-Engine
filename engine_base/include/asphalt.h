@@ -70,7 +70,7 @@ namespace Asphalt {
         }
     }
 
-    // -- GLOBAL COLOURS (GameMaker-style)
+    // -- GLOBAL COLOURS
     static Color colour = WHITE;
     
     // Setter
@@ -87,7 +87,7 @@ namespace Asphalt {
         return &colour;
     }
 
-    // -- GLOBAL FONT! (GameMaker-style)
+    // -- GLOBAL FONT!
     static Font font;
 
     // Setter
