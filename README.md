@@ -1,76 +1,53 @@
-# 🏎️ Asphalt Engine
-A lightweight, actor-based 2D game engine wrapper for [raylib](https://www.raylib.com/).
+# Asphalt Engine
 
-Asphalt Engine simplifies the raylib boilerplate by providing a structured **Actor-Event** system. It handles object lifecycles, depth sorting, and memory management, allowing you to focus on gameplay logic rather than the game loop mechanics.
+Asphalt is a lightweight, scene-based 2D engine framework built on top of Raylib. It is designed to bridge the gap between low-level framework coding and high-level game engine workflows, providing a structured Actor-Scene architecture reminiscent of classic 2D engines like GameMaker or Godot, but within a pure C++ environment.
 
-## ✨ Features
-* **Event-Driven Actors**: Inherit from the `Actor` class to use `onCreate`, `onUpdate`, and `onDraw`.
-* **Automatic Depth Sorting**: Objects are rendered based on their `depth` value—no more manual draw-order headaches.
-* **Smart Lifecycle Management**: Automatic cleanup of textures and memory when an actor is destroyed.
-* **Type-Safe Interaction**: Use the `performAs<T>` utility to safely interact with specific actor types.
-* **MIT Licensed**: Free to use for personal and commercial projects.
+## Key Features
 
-## 🚀 Quick Start
+Scene Management: Automatic lifecycle handling for scenes, including seamless transitions and memory management.
 
-### 1. Define an Actor
-```cpp
-class Player : public Actor {
-public:
-    void onCreate() override {
-        sprite = LoadTexture("assets/player.png");
-        pos = { 100, 100 };
-    }
+**Actor-Oriented Design:** A flexible Actor class with built-in hooks for initialization, logic updates, and dual-pass drawing (World Space and UI Space).
 
-    void onUpdate(float deltaTime) override {
-        if (IsKeyDown(KEY_RIGHT)) pos.x += 200 * deltaTime;
-        // Update your collision mask here
-        setMask(pos.x, pos.y, 32, 32);
-    }
+**AABB Collision System:** Simplified mask-based collision detection integrated into the actor workflow.
 
-    void onDraw(float deltaTime) override {
-        DrawTextureV(sprite, pos, WHITE);
-    }
-};
-```
+**Type-Safe Utilities:** Modern C++ template-based functions for spawning and finding instances (instanceCreate, instanceFind).
 
-### 2. Add to the Game Loop
-In your main.cpp, simply push your actor to the birth queue:
+**Y-Sorting:** Native support for depth-based rendering, essential for top-down 2D perspectives.
 
-```cpp
-actorsToAdd.push_back(new Player()); // Before the while() loop
-```
+**Global Drawing Context"** Centralised font and color management to streamline UI and text rendering.
 
-# 🛠️ Engine Architecture
-Asphalt uses a 5-phase loop every frame:
+## Core Architecture
 
-**Create:** New actors are initialized and added to the active pool.
+Asphalt operates on a hierarchical structure to keep game logic decoupled and organized:
 
-**Update:** Logic and physics are calculated.
+**Scene Manager:** The global orchestrator. It handles the loading/unloading of scenes and ensures the game loop remains consistent.
 
-**Sort:** Actors are sorted by depth (Lower values = Background, Higher values = Foreground).
+Scene: A container for game logic and entities. It manages its own camera and a collection of Actors.
 
-**Draw:** Actors render their sprites to the buffer.
+Actor: The base unit of interaction. Actors handle their own behavior, sprites, and collision masks.
 
-**Destroy:** Flagged actors are cleaned up and memory is freed.
+# Getting Started
 
-# 🏗️ Requirements
-### C++17 or higher.
+## Prerequisites:
 
-### raylib 5.0+
+Ensure you have a C++17 (or newer) compatible compiler.
 
-### g++ (MinGW-w64) compiler.
+## Installation:
 
-> *Note: It must support C++17 or higher (GCC 7+).*
+**METHOD 1**:
 
-Operating System: Windows (currently supported via the included .bat scripts).
+Copy the core headers (asphalt.h, actor.h, scene.h, scene_manager.h) into your project directory.
 
-# 🛠️ How to build
+**METHOD 2**:
 
-1. **Install MinGW-w64**: Ensure you have `g++` installed. You can check by typing `g++ --version` in your terminal.
-2. **Clone the Repo**:
-   ```bash
-   git clone [https://github.com/ReiRingo/AsphaltEngine.git](https://github.com/ReiRingo/Asphalt-Engine.git)
-   ```
+Use the provided create_project.bat to initialize a new project structure instantly.
 
-# 📜 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+> For detailed instructions on implementation and utility functions, please refer to the Getting Started Guide.
+
+# Project Philosophy
+
+Asphalt is built for developers who find Raylib's procedural nature powerful but want more internal organization for larger projects. It provides the "scaffolding" so you can focus on game mechanics rather than reinventing the scene-graph for the tenth time.
+
+> Project Lead: Rei Taylor
+
+> Built with: Raylib 5.0+ and C++ 

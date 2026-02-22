@@ -54,6 +54,7 @@ namespace Asphalt {
         return Vector2Angle(p1, p2) * RAD2DEG;
     }
 
+    // Iterates through specific actors and run Funcs from it.
     template <typename T, typename Func>
     inline void performAs(Func action) {
         // Automatically grab actors from the active scene
@@ -67,6 +68,45 @@ namespace Asphalt {
                 }
             }
         }
+    }
+
+    // -- GLOBAL COLOURS (GameMaker-style)
+    static Color colour = WHITE;
+    
+    // Setter
+    inline void drawColour(Color col) {
+        colour = col;
+    }
+
+    // Getter
+    inline Color drawGetColour() {
+        return colour; // < Copy instead, so people can use it.
+    }
+
+    inline Color* drawGetColourPtr() {
+        return &colour;
+    }
+
+    // -- GLOBAL FONT! (GameMaker-style)
+    static Font font;
+
+    // Setter
+    inline void drawFont(Font fnt) {
+        font = fnt;
+    }
+
+    // Getter
+    inline Font drawGetFont() {
+        return font;
+    }
+
+    inline Font* drawGetFontPtr() {
+        return &font;
+    }
+
+    // Draw Texts
+    inline void drawText(const char* text, int x, int y, float scale = 20.0f, float spacing = 1.0f) {
+        DrawTextEx(font, text, Vector2{ (float)x, (float)y }, scale, spacing, colour);
     }
 }
 

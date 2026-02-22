@@ -83,6 +83,10 @@ namespace Asphalt {
         return colour; // < Copy instead, so people can use it.
     }
 
+    inline Color* drawGetColourPtr() {
+        return &colour;
+    }
+
     // -- GLOBAL FONT! (GameMaker-style)
     static Font font;
 
@@ -94,6 +98,10 @@ namespace Asphalt {
     // Getter
     inline Font drawGetFont() {
         return font;
+    }
+
+    inline Font* drawGetFontPtr() {
+        return &font;
     }
 
     // Draw Texts

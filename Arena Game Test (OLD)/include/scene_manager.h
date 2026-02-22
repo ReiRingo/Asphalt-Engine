@@ -21,7 +21,7 @@ class SceneManager {
         // 1. Check for transition
         if (nextScene != nullptr) {
             if (currentScene != nullptr) {
-                // TODO: Make onEnd
+                // Determine if you want to call onEnd() here manually
                 delete currentScene; 
             }
             
